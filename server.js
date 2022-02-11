@@ -4,10 +4,11 @@ import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
-
-connectDB();
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
+connectDB();
+
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
@@ -16,6 +17,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+
+// api end points
+app.use("/api/v1/users", userRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 
