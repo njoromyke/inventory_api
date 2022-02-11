@@ -50,7 +50,7 @@ const updateBrand = AsyncHandler(async (req, res) => {
   const brand = await Brand.findById(req.params.id);
   if (brand) {
     brand.name = brand.name || req.body.name;
-    brand.status = brand.status || req.body.status;
+    brand.status =  req.body.status;
     const updatedBrand = await brand.save();
     res.status(200).json(updatedBrand);
   } else {
