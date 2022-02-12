@@ -31,6 +31,7 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/stores", storeRoutes);
 app.use("/api/v1/attributes", attributeRoutes);
 app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
