@@ -37,7 +37,7 @@ const employeeShema = mongoose.Schema(
       required: true,
       ref: "Store",
     },
-    role: {
+    position: {
         type: String,
         required: true,
     },
