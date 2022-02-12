@@ -23,6 +23,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World");
+  res.send(" End points are: /api/v1/users, /api/v1/brands, /api/v1/categories, /api/v1/stores, /api/v1/attributes, /api/v1/products, /api/v1/orders, /api/v1/employees");
 });
 
 // api end points
