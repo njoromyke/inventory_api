@@ -5,7 +5,7 @@ import AsyncHandler from "express-async-handler";
 // @route GET /api/v1/products
 // @access private
 const getProducts = AsyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ createdAt: -1 });
+  const products = await Product.find({}).sort({ createdAt: -1 }).populate("store").populate("category").populate("brand").populate("attributes");
   if (products) {
     res.status(200).json(products);
   }

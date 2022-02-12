@@ -14,20 +14,28 @@ const orderModel = mongoose.Schema(
       type: String,
       required: true,
     },
-    product: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
-    },
-    qty: {
+    orderItems: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+        qty: {
+          type: Number,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
+    discount: {
       type: Number,
       required: true,
     },
     totalPrice: {
-      type: Number,
-      required: true,
-    },
-    discount: {
       type: Number,
       required: true,
     },

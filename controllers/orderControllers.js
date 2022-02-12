@@ -32,8 +32,7 @@ const createOrder = AsyncHandler(async (req, res) => {
     customerName,
     customerPhone,
     customerAddress,
-    product,
-    qty,
+    orderItems,
     totalPrice,
     discount,
     paid,
@@ -44,8 +43,7 @@ const createOrder = AsyncHandler(async (req, res) => {
     customerName,
     customerPhone,
     customerAddress,
-    product,
-    qty,
+    orderItems,
     totalPrice,
     discount,
     paid,
@@ -61,13 +59,12 @@ const createOrder = AsyncHandler(async (req, res) => {
 // @route PUT /api/v1/orders/:id
 // @access private
 const updateOrder = AsyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id);
+  const order = await Order.findById(req.params.id).populate("product");
   if (order) {
     order.customerName = req.body.customerName || order.customerName;
     order.customerPhone = req.body.customerPhone || order.customerPhone;
+    order.orderItems = req.body.orderItems || order.orderItems;
     order.customerAddress = req.body.customerAddress || order.customerAddress;
-    order.product = req.body.product || order.product;
-    order.qty = req.body.qty || order.qty;
     order.totalPrice = req.body.totalPrice || order.totalPrice;
     order.discount = req.body.discount || order.discount;
     order.paid = req.body.paid || order.paid;
