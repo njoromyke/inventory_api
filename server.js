@@ -9,6 +9,7 @@ import brandRoutes from "./routes/brandRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import storeRoutes from "./routes/storeRoutes.js";
 import attributeRoutes from "./routes/attributeRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -28,6 +29,7 @@ app.use("/api/v1/brands", brandRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/stores", storeRoutes);
 app.use("/api/v1/attributes", attributeRoutes);
+app.use("/api/v1/products", productRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
