@@ -11,6 +11,7 @@ import storeRoutes from "./routes/storeRoutes.js";
 import attributeRoutes from "./routes/attributeRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import employeeRoutes from "./routes/employeeRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -32,11 +33,13 @@ app.use("/api/v1/stores", storeRoutes);
 app.use("/api/v1/attributes", attributeRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/employees", employeeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Api running on port ${PORT}`);
 });
