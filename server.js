@@ -10,6 +10,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import storeRoutes from "./routes/storeRoutes.js";
 import attributeRoutes from "./routes/attributeRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 connectDB();
