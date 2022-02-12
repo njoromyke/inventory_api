@@ -1,4 +1,5 @@
 import Store from "../models/storeModel.js";
+import AsyncHandler from "express-async-handler";
 
 // @desc Get all stores
 // @route GET /api/v1/stores
@@ -49,7 +50,7 @@ const createStore = AsyncHandler(async (req, res) => {
 const updateStore = AsyncHandler(async (req, res) => {
   const store = await Store.findById(req.params.id);
   if (store) {
-    store.name = store.name || req.body.name;
+    store.name = req.body.name || store.name;
     store.status = req.body.status;
     const updatedStore = await store.save();
     res.status(200).json(updatedStore);

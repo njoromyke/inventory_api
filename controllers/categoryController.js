@@ -49,7 +49,7 @@ const createCategory = AsyncHandler(async (req, res) => {
 const updateCategory = AsyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
   if (category) {
-    category.name = category.name || req.body.name;
+    category.name = req.body.name || category.name;
     category.status = req.body.status;
     const updatedCategory = await category.save();
     res.status(200).json(updatedCategory);
