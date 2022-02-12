@@ -11,6 +11,7 @@ const atrributeSchema = mongoose.Schema(
     status: {
       type: Boolean,
       required: true,
+      default: false,
     },
   },
   {
