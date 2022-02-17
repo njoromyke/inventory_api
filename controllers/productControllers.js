@@ -5,7 +5,12 @@ import AsyncHandler from "express-async-handler";
 // @route GET /api/v1/products
 // @access private
 const getProducts = AsyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ createdAt: -1 }).populate("store").populate("category").populate("brand").populate("attributes");
+  const products = await Product.find({})
+    .sort({ createdAt: -1 })
+    .populate("store")
+    .populate("category")
+    .populate("brand")
+    .populate("attribute");
   if (products) {
     res.status(200).json(products);
   }
@@ -38,8 +43,7 @@ const createProduct = AsyncHandler(async (req, res) => {
     brand,
     qty,
     description,
-    color,
-    size,
+    attributes,
     available,
   } = req.body;
   const product = await Product.findOne({ name });
@@ -58,8 +62,7 @@ const createProduct = AsyncHandler(async (req, res) => {
     brand,
     qty,
     description,
-    color,
-    size,
+    attributes,
     available,
   });
   if (newProduct) {
@@ -83,8 +86,7 @@ const updateProduct = AsyncHandler(async (req, res) => {
     product.brand = req.body.brand || product.brand;
     product.qty = req.body.qty || product.qty;
     product.description = req.body.description || product.description;
-    product.color = req.body.color || product.color;
-    product.size = req.body.size || product.size;
+    peoduct.attributes = req.body.attributes || product.attributes;
     product.available = req.body.available || product.available;
     const updatedProduct = await product.save();
     if (updatedProduct) {

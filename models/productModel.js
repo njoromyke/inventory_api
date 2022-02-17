@@ -30,16 +30,20 @@ const productSchema = mongoose.Schema(
       required: true,
       minlength: 3,
     },
-    color: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Attribute",
-    },
-    size: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Attribute",
-    },
+    attributes: [
+      {
+        color: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Attribute",
+        },
+        size: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Attribute",
+        },
+      },
+    ],
     brand: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
