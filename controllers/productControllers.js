@@ -10,7 +10,7 @@ const getProducts = AsyncHandler(async (req, res) => {
     .populate("store")
     .populate("category")
     .populate("brand")
-    .populate("attribute");
+    .populate("attributes");
   if (products) {
     res.status(200).json(products);
   }
