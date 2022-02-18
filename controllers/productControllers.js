@@ -10,7 +10,8 @@ const getProducts = AsyncHandler(async (req, res) => {
     .populate("store")
     .populate("category")
     .populate("brand")
-    .populate("attributes");
+    .populate("attributes.color", "name")
+    .populate("attributes.size", "name");
   if (products) {
     res.status(200).json(products);
   }
@@ -86,7 +87,7 @@ const updateProduct = AsyncHandler(async (req, res) => {
     product.brand = req.body.brand || product.brand;
     product.qty = req.body.qty || product.qty;
     product.description = req.body.description || product.description;
-    peoduct.attributes = req.body.attributes || product.attributes;
+    product.attributes = req.body.attributes || product.attributes;
     product.available = req.body.available || product.available;
     const updatedProduct = await product.save();
     if (updatedProduct) {

@@ -35,12 +35,12 @@ const productSchema = mongoose.Schema(
         color: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Attribute",
+          ref: "Atrribute",
         },
         size: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: "Attribute",
+          ref: "Atrribute",
         },
       },
     ],
