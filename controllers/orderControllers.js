@@ -6,7 +6,7 @@ import AsyncHandler from "express-async-handler";
 // @access private
 const getOrders = AsyncHandler(async (req, res) => {
   // sort orders by createdAt
-  const orders = await Order.find({}).sort({ createdAt: -1 });
+  const orders = await Order.find({}).sort({ createdAt: -1 }).populate("orderItems.product");
   if (orders) {
     res.status(200).json(orders);
   }
@@ -59,7 +59,7 @@ const createOrder = AsyncHandler(async (req, res) => {
 // @route PUT /api/v1/orders/:id
 // @access private
 const updateOrder = AsyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id).populate("product");
+  const order = await Order.findById(req.params.id)
   if (order) {
     order.customerName = req.body.customerName || order.customerName;
     order.customerPhone = req.body.customerPhone || order.customerPhone;
