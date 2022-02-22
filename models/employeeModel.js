@@ -38,12 +38,12 @@ const employeeShema = mongoose.Schema(
       ref: "Store",
     },
     position: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 const Employee = mongoose.model("Employee", employeeShema);
