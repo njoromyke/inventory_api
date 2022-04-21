@@ -28,7 +28,7 @@ const io = new Server(httpServer, {
   transports: ["polling"],
   cors: {
     cors: {
-      origin: "*",
+      origin: "http://localhost:3000",
     },
   },
 });

@@ -14,8 +14,8 @@ import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.route("/").get(protect, getOrders).post(protect, createOrder);
-router.route("/callback").post( callback);
-router.route("/lipa-na-mpesa").get(protect, lipaNaMpesa);
+router.route("/callback").post(callback);
+router.route("/lipa-na-mpesa").get(lipaNaMpesa);
 router.route("/update/:id").put(protect, updatePaymentToPaid);
 router
   .route("/:id")
