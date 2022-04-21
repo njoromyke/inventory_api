@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import http, { createServer } from "http";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
@@ -12,6 +13,7 @@ import attributeRoutes from "./routes/attributeRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import employeeRoutes from "./routes/employeeRoutes.js";
+import { Server } from "socket.io";
 
 dotenv.config();
 connectDB();
@@ -20,6 +22,16 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  transports: ["polling"],
+  cors: {
+    cors: {
+      origin: "*",
+    },
+  },
+});
 
 app.get("/", (req, res) => {
   res.send(
@@ -42,6 +54,20 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Api running on port ${PORT}`);
+io.on("connection", (socket) => {
+  console.log("A user is connected");
+
+  socket.on("message", (message) => {
+    console.log(`message from ${socket.id} : ${message}`);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`socket ${socket.id} disconnected`);
+  });
 });
+
+httpServer.listen(PORT, () => {
+  console.log(`Server up and running on port ${PORT}`);
+});
+
+export { io };
