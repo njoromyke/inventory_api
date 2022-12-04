@@ -115,18 +115,17 @@ const lipaNaMpesa = AsyncHandler(async (req, res) => {
     const response = await mpesa.lipaNaMpesaOnline({
       BusinessShortCode: 174379,
       Amount: 1 /* 1000 is an example amount */,
-      PartyA: 254729842998,
-      PhoneNumber: 254729842998,
+      PartyA: 254701775944,
+      PhoneNumber: 254701775944,
       PartyB: 174379,
-      CallBackURL: "https://inventoryprojo.herokuapp.com/api/v1/orders/callback",
-      AccountReference: "bus booking",
+      CallBackURL:
+        "https://inventoryprojo.herokuapp.com/api/v1/orders/callback",
+      AccountReference: "Inventory App",
       passKey:
         "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
       TransactionType: "CustomerPayBillOnline",
     });
     io.emit("querying", response);
-    
-  
   } catch (error) {
     console.log(error);
   }
@@ -136,7 +135,6 @@ const callback = AsyncHandler(async (req, res) => {
   const b = req.body.Body.stkCallback["ResultDesc"];
   if (b) {
     io.emit("queried", req.body.Body.stkCallback["ResultDesc"]);
-
   }
   res.json(b);
 });
@@ -154,4 +152,13 @@ const updatePaymentToPaid = AsyncHandler(async (req, res) => {
   }
 });
 
-export { getOrders, getOrder, createOrder, updateOrder, deleteOrder, lipaNaMpesa, callback, updatePaymentToPaid };
+export {
+  getOrders,
+  getOrder,
+  createOrder,
+  updateOrder,
+  deleteOrder,
+  lipaNaMpesa,
+  callback,
+  updatePaymentToPaid,
+};
