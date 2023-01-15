@@ -115,8 +115,8 @@ const lipaNaMpesa = AsyncHandler(async (req, res) => {
     const response = await mpesa.lipaNaMpesaOnline({
       BusinessShortCode: 174379,
       Amount: 1 /* 1000 is an example amount */,
-      PartyA: 254701775944,
-      PhoneNumber: 254701775944,
+      PartyA: 254723595928,
+      PhoneNumber: 254723595928,
       PartyB: 174379,
       CallBackURL:
         "https://inventoryprojo.herokuapp.com/api/v1/orders/callback",
